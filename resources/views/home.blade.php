@@ -1,124 +1,152 @@
 @extends('layouts.app')
 
+@section('styles')
+<style>
+    body {
+        background: #f2f4f7;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+    .page-wrapper {
+        display: flex;
+        flex-grow: 1;
+    }
+    .sidebar {
+        width: 260px;
+        min-height: calc(100vh - 66px);
+        position: sticky; 
+        top: 66px; 
+        background: #0c8e8a;
+        border-right: 1px solid #086b6a;
+        padding-top: 10px;
+    }
+    .sidebar a {
+        display: flex;
+        align-items: center;
+        padding: 14px 20px;
+        color: white; 
+        font-size: 16px;
+        text-decoration: none;
+        transition: 0.2s;
+    }
+    .sidebar a:hover { background: #086b6a; }
+    .sidebar a.active {
+        background: #f2f4f7;
+        color: #333;
+        border-radius: 4px;
+        margin: 0 10px;
+    }
+
+    /* === NUEVA ESTRUCTURA CENTRADA === */
+    .main-content {
+        flex-grow: 1; 
+        display: flex;
+        align-items: center; 
+        justify-content: center; 
+        padding: 30px;
+    }
+
+    .welcome-container {
+        text-align: center;
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .welcome-logo {
+        width: 300px; 
+        height: auto;
+        margin-bottom: 20px;
+        filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+    }
+
+    .welcome-message {
+        color: #1d1d1f;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+
+    .welcome-message h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 10px;
+    }
+
+    .welcome-message p {
+        font-size: 1.2rem;
+        color: #6e6e73;
+    }
+
+    .menu-icon {
+        width: 35px;
+        height: 35px;
+        margin-right: 15px;
+        filter: invert();
+        object-fit: contain;
+    }
+    .active img { filter: invert(0); }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+@endsection
+
 @section('content')
-<div class="container">
-    {{-- CARD DEL DASHBOARD --}}
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card" style="border-radius: 15px; background-color: #ffffff;">
-                <div class="card-header" style="background-color: #0A9A9E; color: white; border-radius: 15px 15px 0 0;">
-                    {{ __('Dashboard') }}
-                </div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+<div class="page-wrapper">
 
-                    {{ __('Haz iniciado sesión!') }}
-                </div>
+    {{-- SIDEBAR --}}
+    <div class="sidebar">
+        <a href="{{ url('home') }}" class="active">
+            <img src="{{ asset('img/informe-de-datos.png') }}" alt="Icono Reportes" class="menu-icon">
+            Dashboard
+        </a>
+        <a href="{{ url('crud') }}">
+            <img src="{{ asset('img/red-mundial.png') }}" alt="red-mundial" class="menu-icon">
+            Reportes públicos
+        </a>
+        <a href="{{ url('reportes') }}"> 
+            <img src="{{ asset('img/tus reportes.png') }}" alt="Icono Reportes" class="menu-icon">
+            Reportes
+        </a>
+        <a href="{{ url('moderadores') }}">
+            <img src="{{ asset('img/proteger.png') }}" alt="Icono Reportes" class="menu-icon">
+            Moderadores
+        </a>
+        <a href="{{ url('leer-usuarios') }}">
+            <img src="{{ asset('img/admin.png') }}" alt="Moderadores" class="menu-icon">
+            Administradores
+        </a>
+        <a href="{{ url("leer-contactos") }}">
+            <img src="{{ asset('img/contacts.png') }}" alt="Moderadores" class="menu-icon">
+            Contactos
+        </a>
+        <a href="{{ url('cuentasbloqueadas') }}">
+            <img src="{{ asset('img/cuenta-privada.png') }}" alt="Icono Reportes" class="menu-icon">
+            Cuentas bloqueadas
+        </a>
+        <a href="{{ url('solicitudes') }}">
+            <img src="{{ asset('img/soporte y contacto.png') }}" alt="Icono Reportes" class="menu-icon">
+            Solicitudes
+        </a>
+    </div>
+
+    {{-- CONTENIDO PRINCIPAL CENTRADO --}}
+    <div class="main-content">
+        <div class="welcome-container">
+            <img src="{{ asset('images/logoMOVI.png') }}" alt="Logo MovidGO" class="welcome-logo">
+            
+            <div class="welcome-message">
+                <h1>¡Bienvenido!</h1>
+                <p>Panel de administración de <strong>MoviDGO</strong>.</p>
+                <p class="small text-muted">Has iniciado sesión correctamente.</p>
             </div>
         </div>
     </div>
 
-    {{-- MENU CON ACORDEON --}}
-    <div class="row mt-4 justify-content-center">
-        <div class="col-md-8">
-            <div class="card" style="border-radius: 15px; background-color: #ffffff;">
-                {{-- Opciones del menú --}}
-                <div class="list-group list-group-flush">
-                    {{-- Opción 1 (Inicio) --}}
-                    <a href="{{ route('home') }}"
-                       class="list-group-item list-group-item-action d-flex align-items-center"
-                       style="background-color: #f0f0f0; border-radius: 15px; margin-bottom: 5px;">
-                        <img src="{{ asset('img/inicio.png') }}" 
-                             alt="Icono Inicio" 
-                             class="me-3" 
-                             style="width: 24px; height: 24px;">
-                        <span style="color: #0A9A9E;">Inicio</span>
-                    </a>
-
-                    {{-- Opción 2 (Tus reportes) con acordeón --}}
-                    <a href="#reportes" data-bs-toggle="collapse"
-                       class="list-group-item list-group-item-action d-flex align-items-center"
-                       style="background-color: #f0f0f0; border-radius: 15px; margin-bottom: 5px;">
-                        <img src="{{ asset('img/tus reportes.png') }}" 
-                             alt="Icono Reportes" 
-                             class="me-3" 
-                             style="width: 24px; height: 24px;">
-                        <span style="color: #0A9A9E;">Tus reportes</span>
-                    </a>
-                    <div id="reportes" class="collapse">
-                        <div class="list-group">
-                            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                                <img src="{{ asset('img/tus reportes.png') }}" alt="Icono Reporte" class="me-3" style="width: 24px; height: 24px;">
-                                <span>Reporte #01_17:02_11/11/2025</span>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
-                                <img src="{{ asset('img/tus reportes.png') }}" alt="Icono Reporte" class="me-3" style="width: 24px; height: 24px;">
-                                <span>Reporte #02_22:15_12/11/2025</span>
-                            </a>
-                        </div>
-                    </div>
-
-                    {{-- Opción 3 (Soporte y contacto) con acordeón --}}
-                    <a href="#soporte" data-bs-toggle="collapse"
-                       class="list-group-item list-group-item-action d-flex align-items-center"
-                       style="background-color: #f0f0f0; border-radius: 15px; margin-bottom: 5px;">
-                        <img src="{{ asset('img/soporte y contacto.png') }}" 
-                             alt="Icono Soporte" 
-                             class="me-3" 
-                             style="width: 24px; height: 24px;">
-                        <span style="color: #0A9A9E;">Soporte y contacto</span>
-                    </a>
-                    <div id="soporte" class="collapse">
-                        <div class="list-group">
-                            {{-- Preguntas frecuentes --}}
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <strong>¿Cómo puedo reportar un accidente o daño en la vía pública desde la app?</strong>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <strong>¿Qué hago si la aplicación no detecta correctamente mi ubicación?</strong>
-                            </a>
-                            <a href="#" class="list-group-item list-group-item-action">
-                                <strong>La aplicación se cierra sola o presenta errores, ¿qué puedo hacer?</strong>
-                            </a>
-
-                            {{-- Chat con soporte técnico --}}
-                            <a href="#contactar-soporte" class="list-group-item list-group-item-action">
-                                <span>Chat con soporte técnico</span>
-                            </a>
-
-                            {{-- Sección de contacto --}}
-                            <div id="contactar-soporte" class="collapse">
-                                <p>Comunícate con uno de nuestros técnicos para brindarte ayuda sobre tu problema.</p>
-                                <a href="#" class="btn btn-primary" style="background-color: #0A9A9E; border-color: #0A9A9E;">Contáctanos</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    {{-- Opción 4 (Acerca de) --}}
-                    <a href="#acerca-de" data-bs-toggle="collapse"
-                       class="list-group-item list-group-item-action d-flex align-items-center"
-                       style="background-color: #f0f0f0; border-radius: 15px; margin-bottom: 5px;">
-                        <img src="{{ asset('img/acerca de.png') }}" 
-                             alt="Icono Acerca de" 
-                             class="me-3" 
-                             style="width: 24px; height: 24px;">
-                        <span style="color: #0A9A9E;">Acerca de</span>
-                    </a>
-                    <div id="acerca-de" class="collapse">
-                        <div class="list-group">
-                            <p class="list-group-item">
-                                En esta aplicación, nuestra misión es mejorar la seguridad y eficiencia vial proporcionando información actualizada sobre el estado de las vías. Facilitamos a la ciudadanía el acceso a datos relevantes y la posibilidad de reportar incidencias en tiempo real, contribuyendo así a una mejor toma de decisiones por parte de las autoridades.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
+
 @endsection

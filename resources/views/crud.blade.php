@@ -123,7 +123,6 @@
         color: #0c8e8a;
     }
     
-    /* === Filtro y búsqueda === */
     .filter-bar {
         display: flex;
         justify-content: space-between;
@@ -144,9 +143,7 @@
     }
     .menu-icon {
     width: 35px;
-    /* Nuevo tamaño más pequeño */
     height: 35px;
-    /* Nuevo tamaño más pequeño */
     margin-right: 15px;
     object-fit: contain;
     filter: invert();
@@ -162,7 +159,7 @@
 <div class="page-wrapper">
 
     <div class="sidebar">
-        <a href="#"><img src="{{ asset('img/informe-de-datos.png') }}" alt="Icono Reportes" class="menu-icon">
+        <a href="{{ url("home") }}"><img src="{{ asset('img/informe-de-datos.png') }}" alt="Icono Reportes" class="menu-icon">
             Dashboard</a>
         <a href="{{ url("crud") }}" class="active">
             <img src="{{ asset('img/red-mundial.png') }}" alt="red-mundial" class="menu-icon">
@@ -172,6 +169,14 @@
             Reportes</a>
         <a href="{{ url("moderadores") }}"><img src="{{ asset('img/proteger.png') }}" alt="Icono Reportes" class="menu-icon">
             Moderadores</a>
+            <a href="{{ url('leer-usuarios') }}">
+            <img src="{{ asset('img/admin.png') }}" alt="Moderadores" class="menu-icon">
+            Administradores
+        </a>
+        <a href="{{ url("leer-contactos") }}">
+            <img src="{{ asset('img/contacts.png') }}" alt="Moderadores" class="menu-icon">
+            Contactos
+        </a>
         <a href="{{ url("cuentasbloqueadas") }}"><img src="{{ asset('img/cuenta-privada.png') }}" alt="Icono Reportes" class="menu-icon">
             Cuentas bloqueadas</a>
         <a href="{{ url("solicitudes") }}"><img src="{{ asset('img/soporte y contacto.png') }}" alt="Icono Reportes" class="menu-icon">

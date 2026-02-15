@@ -5,14 +5,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Sitio web</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        /* (Tus estilos de footer se mantienen igual) */
+        .apple-footer {
+            background-color: #f5f5f7 !important;
+            color: #1d1d1f !important;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            padding: 60px 0 40px 0;
+            border-top: 1px solid #d2d2d7;
+        }
+        .footer-title { font-weight: 600; font-size: 14px; margin-bottom: 15px; color: #1d1d1f; }
+        .footer-text { color: #6e6e73; line-height: 1.6; text-align: justify; }
+        .footer-list { list-style: none; padding: 0; }
+        .footer-list li { margin-bottom: 10px; }
+        .footer-list a { color: #424245; text-decoration: none; transition: color 0.2s ease; }
+        .footer-list a:hover { color: #087D83; text-decoration: underline; }
+        .social-link { display: flex; align-items: center; color: #424245; text-decoration: none; margin-bottom: 12px; transition: opacity 0.2s; }
+        .social-link:hover { opacity: 0.7; color: #087D83; }
+        .social-icon-img { width: 20px; height: 20px; margin-right: 12px; filter: grayscale(100%); }
+        .social-link:hover .social-icon-img { filter: grayscale(0%); }
+        .footer-bottom { margin-top: 40px; padding-top: 20px; border-top: 1px solid #d2d2d7; color: #86868b; font-size: 11px; }
+    </style>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="{{ url('/') }}">MovidGO</a>
+            
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -21,27 +44,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="index.blade" href="{{ url('/') }}">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+                        <a class="nav-link" href="{{ url('contact.blade') }}">Contacto</a>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
@@ -51,72 +57,61 @@
             </div>
         </div>
     </nav>
+
     @yield("content")
 
-
-
-
-    <footer style="background-color: #087D83;">
+    <footer class="apple-footer">
         <div class="container">
             <div class="row">
-                <!-- Columna 1: Logo -->
-                <div class="col-lg-3 col-md-6 col-sm p-4 text-center">
-                    <img src="{{ asset('images/logoMOVI.png') }}" alt="Logo MOVI" width="150" height="150">
-                </div>
-
-                <!-- Columna 2: Descripción -->
-                <div class="col-lg-3 col-md-6 col-sm p-4">
-                    <p>
-                        Nuestra misión es mejorar la seguridad y eficiencia vial proporcionando
-                        información actualizada sobre el estado de las vías. Facilitamos a la ciudadanía
-                        el acceso a datos relevantes y la posibilidad de reportar incidencias
-                        en tiempo real, contribuyendo así a una mejor toma de decisiones
-                        por parte de las autoridades.
+                <div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
+                    <img src="{{ asset('images/logoMOVI.png') }}" alt="Logo MOVI" width="120" class="mb-3">
+                    <p class="footer-text" style="font-size: 11px;">
+                        Copyright © 2026 MoviDGO.<br>Todos los derechos reservados.
                     </p>
                 </div>
 
-                <!-- Columna 3: Enlaces -->
-                <div class="col-lg-3 col-md-6 col-sm p-4">
-                    <ol type="I">
-                        <li>Inicio</li>
-                        <li>Acerca</li>
-                        <li>Servicios</li>
-                        <li>Contacto</li>
-                    </ol>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-title">Nuestra Misión</h5>
+                    <p class="footer-text">
+                        Mejorar la seguridad y eficiencia vial proporcionando información actualizada y reportes en tiempo real para una mejor toma de decisiones.
+                    </p>
                 </div>
 
-                <!-- Columna 4: Redes sociales -->
-                <div class="col-lg-3 col-md-6 col-sm p-4">
-                    <ul class="list-unstyled">
-                        <li class="mb-2">
-                            <img src="{{ asset('images/facebook.png') }}" alt="Facebook Icon"
-                                style="width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;">
-                            Facebook
-                        </li>
-                        <li class="mb-2">
-                            <img src="{{ asset('images/instagram.png') }}" alt="Instagram Icon"
-                                style="width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;">
-                            Instagram
-                        </li>
-                        <li class="mb-2">
-                            <img src="{{ asset('images/whatsapp.png') }}" alt="WhatsApp Icon"
-                                style="width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;">
-                            WhatsApp
-                        </li>
-                        <li class="mb-2">
-                            <img src="{{ asset('images/linkedin.png') }}" alt="LinkedIn Icon"
-                                style="width: 24px; height: 24px; margin-right: 8px; vertical-align: middle;">
-                            LinkedIn
-                        </li>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-title">Enlaces rápidos</h5>
+                    <ul class="footer-list">
+                        <li><a href="{{ url('/') }}">Inicio</a></li>
+                        <li><a href="#">Acerca de nosotros</a></li>
+                        <li><a href="#">Servicios viales</a></li>
+                        <li><a href="{{ url('contacto') }}">Contacto</a></li>
                     </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="footer-title">Redes Sociales</h5>
+                    <div class="d-flex flex-column">
+                        <a href="#" class="social-link"><img src="{{ asset('images/facebook.png') }}" class="social-icon-img" alt="FB"> Facebook</a>
+                        <a href="#" class="social-link"><img src="{{ asset('images/instagram.png') }}" class="social-icon-img" alt="IG"> Instagram</a>
+                        <a href="#" class="social-link"><img src="{{ asset('images/whatsapp.png') }}" class="social-icon-img" alt="WA"> WhatsApp</a>
+                        <a href="#" class="social-link"><img src="{{ asset('images/linkedin.png') }}" class="social-icon-img" alt="LI"> LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>Uso de cookies | Política de privacidad</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <p>México | MoviDGO Inteligencia Vial</p>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

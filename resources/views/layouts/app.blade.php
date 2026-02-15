@@ -85,29 +85,6 @@
                     <!-- ===================== MENÚ IZQUIERDA ===================== -->
                     <ul class="navbar-nav me-auto">
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home') }}">
-                                <i class="fa-solid fa-house"></i> Home
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('leer-contactos') }}">
-                                <i class="fa-solid fa-address-book"></i> Contactos
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('leer-usuarios') }}">
-                                <i class="fa-solid fa-users"></i> Usuarios
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ url('crud') }}">
-                                <i class="fa-solid fa-address-card"></i> Dashboard
-                            </a>
-                        </li>
 
                     </ul>
 

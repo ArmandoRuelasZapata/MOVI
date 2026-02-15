@@ -1,0 +1,36 @@
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm" style="border-radius: 15px;">
+                <div class="card-header" style="background-color: #0A9A9E; color: white;">
+                    <strong>Editar Usuario: {{ $user->name }}</strong>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('users.update', $user->id) }}" method="POST">
+                        @csrf
+                        @method('PUT')
+
+                        <div class="mb-3">
+                            <label class="form-label">Nombre</label>
+                            <input type="text" name="name" class="form-control" value="{{ $user->name }}" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Correo Electrónico</label>
+                            <input type="email" name="email" class="form-control" value="{{ $user->email }}" required>
+                        </div>
+
+                        <button type="submit" class="btn text-white" style="background-color: #0A9A9E;">
+                            Actualizar Datos
+                        </button>
+                        <a href="{{ url('leer-usuarios') }}" class="btn btn-secondary">Cancelar</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection

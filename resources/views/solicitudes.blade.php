@@ -67,11 +67,10 @@
         padding: 25px;
         border-radius: 10px;
         box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        overflow-y: auto; /* Para simular el scroll de la imagen de referencia */
-        max-height: 400px; /* Altura máxima para que se vea el scroll, ajústalo según necesites */
+        overflow-y: auto; 
+        max-height: 400px; 
     }
     
-    /* === Estilos para los títulos de las secciones de reporte === */
     .report-section-title {
         font-size: 1.5rem;
         font-weight: bold;
@@ -79,7 +78,6 @@
         margin-bottom: 20px;
     }
 
-    /* Estilos para la lista de reportes (simulando la imagen de referencia) */
     .reportes-list {
         list-style: none;
         padding: 0;
@@ -90,14 +88,13 @@
         display: flex;
         align-items: center;
         padding: 10px 0;
-        cursor: pointer; /* Indica que es clickeable */
+        cursor: pointer; 
     }
 
     .reportes-list-item:hover .report-title {
-        color: #0c8e8a; /* Efecto hover sutil */
+        color: #0c8e8a; 
     }
 
-    /* Ícono de documento (simulando el ícono de la imagen) */
     .report-icon {
         font-size: 1.8em; 
         color: #777;
@@ -111,12 +108,10 @@
     }
 
     .report-title {
-        font-weight: 500; /* Menos negrita que el título de la sección */
+        font-weight: 500; 
         color: #333;
         transition: color 0.2s;
     }
-
-    /* Eliminamos estilos de .report-type y .report-actions para simular la imagen */
 
 
     /* === Filtro y búsqueda (Adaptado para coincidir más con la posición de la imagen) === */
@@ -145,9 +140,7 @@
     }
     .menu-icon {
     width: 35px;
-    /* Nuevo tamaño más pequeño */
     height: 35px;
-    /* Nuevo tamaño más pequeño */
     margin-right: 15px;
     object-fit: contain;
     filter: invert();
@@ -166,7 +159,7 @@
 <div class="page-wrapper">
 
      <div class="sidebar">
-        <a href="#"><img src="{{ asset('img/informe-de-datos.png') }}" alt="Icono Reportes" class="menu-icon">
+        <a href="{{ url("home") }}"><img src="{{ asset('img/informe-de-datos.png') }}" alt="Icono Reportes" class="menu-icon">
             Dashboard</a>
         <a href="{{ url("crud") }}">
             <img src="{{ asset('img/red-mundial.png') }}" alt="red-mundial" class="menu-icon">
@@ -176,6 +169,14 @@
             Reportes</a>
         <a href="{{ url("moderadores") }}"><img src="{{ asset('img/proteger.png') }}" alt="Icono Reportes" class="menu-icon">
             Moderadores</a>
+            <a href="{{ url('leer-usuarios') }}">
+            <img src="{{ asset('img/admin.png') }}" alt="Moderadores" class="menu-icon">
+            Administradores
+        </a>
+        <a href="{{ url("leer-contactos") }}">
+            <img src="{{ asset('img/contacts.png') }}" alt="Moderadores" class="menu-icon">
+            Contactos
+        </a>
         <a href="{{ url("cuentasbloqueadas") }}"><img src="{{ asset('img/cuenta-privada.png') }}" alt="Icono Reportes" class="menu-icon">
             Cuentas bloqueadas</a>
         <a href="{{ url("solicitudes") }}" class="active"><img src="{{ asset('img/soporte y contacto.png') }}" alt="Icono Reportes" class="menu-icon">
@@ -187,7 +188,7 @@
         {{-- Barra de búsqueda en la parte superior derecha del contenido --}}
         <div class="main-header">
             <div class="search-box">
-                <input type="text" placeholder="Search..." /> {{-- Usamos el placeholder de la imagen --}}
+                <input type="text" placeholder="Search..." /> 
             </div>
         </div>
 
